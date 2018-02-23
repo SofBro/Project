@@ -1,5 +1,6 @@
 from collections import Counter
 import math
+import matplotlib.pyplot as plt
 
 x = []
 t = int(input("Введите временной промежуток:"))
@@ -52,17 +53,16 @@ for word in b012:
         m012 += 1
 #print(b012, m012)
 N = (len(time01)*(len(time1)-m01)*(m01+m012))/(m01*(m12+m012))      # Вычисление общей ЧИСЛЕННОСТИ
-Var = (N**2)*(1/(m12+m012) + 1/(m02+m012) + 1/m01 + 1/len(time2))
+#Var = (N**2)*(1/(m12+m012) + 1/(m02+m012) + 1/m01 + 1/len(time2))
 #CIB = (N + 1.96*(math.sqrt(Var)))    # верхняя граница доверителного интервала
 #CIM = (N - 1.96*(math.sqrt(Var)))    # нижняя граница доверительного интервала
-SPEED = 1/t*(math.log(m01*len(time1)/len(time0)*(m02+m012)))     # скорость роста популяции
-speed = 1/t*(math.log((len(time1)-m01))*(m02+m012))/len(time0)*(m12+m012)     # скорость снижения численности популяции
+SPEED = (1/t)*(math.log(m01*len(time1)/len(time0)*(m02+m012)))     # скорость роста популяции
+speed = (1/t)*(math.log((len(time1)-m01))*(m02+m012))/len(time0)*(m12+m012)     # скорость снижения численности популяции
 #print(speed, SPEED, N)
 if (N - math.floor(N)) * 10 >= 5:
     x.append(math.ceil(N))
 else:
-    x.append(math.floor(N))
-    x.append(N)        # x - список с данными по численности в разные года
+    x.append(math.floor(N))        # x - список с данными по численности в разные года
 
 
 def number(gamma, beta, a):
@@ -80,5 +80,7 @@ while g > 0:
     else:
         x.append(math.floor(N))
 print(x)
+plt.plot([t, t+t, 3*t], [x[0], x[1], x[2]], 'red')
+plt.show()
 
 
