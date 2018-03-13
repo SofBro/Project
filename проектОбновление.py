@@ -50,7 +50,6 @@ for row in range(s.nrows):  # создает массив
         else:
             e = e + str(p[i])
     time2.append(e)
-f.close()
 time12 = list(time1+time2)
 b12 = Counter(time12)
 m12 = 0
@@ -99,5 +98,10 @@ while g > 0:
     else:
         x.append(math.floor(N))
 print(x)
-plt.plot([t, t+t, 3*t], [x[0], x[1], x[2]], 'red')
+
+plt.bar([t, t+t, 3*t], [x[0], x[1], x[2]], color='silver')
+plt.plot([t, t+t, 3*t], [x[0], x[1], x[2]], "--", color='purple')
+plt.title('Прирост числа инфецированных')
+plt.ylabel('Количество человек')
+plt.xlabel('Временной период')
 plt.show()
